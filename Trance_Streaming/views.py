@@ -1,4 +1,12 @@
 from django.shortcuts import render
+from Songs.models import Song
+from django.core.paginator import Paginator
 
 def home(request):
-    return render(request, 'user/home.html')
+    songs = Song.objects.all()
+
+    context = {
+        'songs':songs,
+
+    }
+    return render(request, 'user/home.html', context)

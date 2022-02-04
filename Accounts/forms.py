@@ -3,9 +3,6 @@ from django.db.models import fields
 from.models import Account
 
 
-
-
-
 class RegistrationForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput(attrs={
         'placeholder':'Enter Password'

@@ -5,13 +5,12 @@
 	<!-- main content -->
 	<main class="main">
 		{% if request.GET.command == 'verification' %}
-		<div class="container mx-auto alert alert-info text-center" role="alert" style="max-width: 1024px; margin-top:100px;">
-			Thank you for registering with us. We have sent you a verification email to your email address [{{ request.GET.email }}]
+		<div class="container" role="alert" style="max-width: 1024px; margin-top:100px; margin-bottom:100px; color:#25a56a; text-align:center;">
+			Thank you for registering with us. <br> We have sent you a verification email to your email address [{{ request.GET.email }}]
 			<br><br>
 			Already verified? <a href="{% url 'user_login' %}">Login</a>
 			</div>
-			
-		{% else %}
+		{% else %}	
 		<div class="container-fluid">
 			<div class="row row--grid">
 				<!-- breadcrumb -->
@@ -22,10 +21,11 @@
 					</ul>	
 				</div>
 				<!-- end breadcrumb -->
-				{% include 'includes/alerts.html' %}
+				
 				<!-- sign in -->
 				<div class="col-12">
 					<div class="sign">
+						{% comment %} {% include 'includes/alerts.html' %} {% endcomment %}
 						<div class="sign__content">
 							<!-- authorization form -->
 							<form action="{% url 'user_login' %}" method="POST" class="sign__form">
@@ -47,7 +47,7 @@
 									<label for="remember">Remember Me</label>
 								</div>
 								
-								<button class="sign__btn" type="submit">Sign in</button>
+								<button class="sign__btn" type="submit" onclick="login()">Sign in</button>
 
 								<span class="sign__delimiter">or</span>
 
@@ -70,5 +70,38 @@
 		</div>
 	</main>
 	{% endif %}
+
+	<script>
+		function login(){
+			localStorage.setItem("loginStat","true")
+		}
+	</script>
+
+	<script>
+		window.onload=	function(){
+				var a = localStorage.getItem("logoutStat")
+				if(a){
+					const Toast = Swal.mixin({
+						toast: true,
+						position: 'top-end',
+						showConfirmButton: false,
+						timer: 2000,
+						timerProgressBar: true,
+						didOpen: (toast) => {
+						  toast.addEventListener('mouseenter', Swal.stopTimer)
+						  toast.addEventListener('mouseleave', Swal.resumeTimer)
+						}
+					  })
+					  
+					  Toast.fire({
+						icon: 'warning',
+						title: 'You are logged out!'
+					  })
+					  localStorage.removeItem("logoutStat");
+				}
+			}
+		</script>
+
+
 	{% endblock body %} 
 	<!-- end main content -->

@@ -57,6 +57,7 @@ def user_register(request):
             
             user = Account.objects.create_user(first_name=first_name, last_name=last_name, email=email, username=username, password=password)
             user.phone_number = phone_number
+            user.is_active = False
             user.save()
             
             # USER ACTIVATION
