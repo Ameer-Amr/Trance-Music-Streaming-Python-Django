@@ -20,6 +20,9 @@
   <link href="{% static 'admin/css/paper-dashboard.css' %}?v=2.0.1" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="{% static 'admin/demo/demo.css' %}" rel="stylesheet" />
+  	<!-- sweet alert -->
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script> 
+  <script src="https://kit.fontawesome.com/40ca60b5d8.js" crossorigin="anonymous"></script>        
 </head>
 
 {% block header %}
@@ -50,26 +53,26 @@
           </li>
           <li>
             <a href="{% url 'upload_song' %}">
-              <i class="nc-icon nc-diamond"></i>
+              <i class="nc-icon nc-headphones"></i>
               <p>Upload Songs</p>
             </a>
           </li>
           <li>
             <a href="{% url 'song_list' %}">
-              <i class="nc-icon nc-pin-3"></i>
+              <i class="nc-icon nc-bullet-list-67"></i>
               <p>Song List</p>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="nc-icon nc-single-02"></i>
+              <p>Users List</p>
             </a>
           </li>
           <li>
             <a href="#">
               <i class="nc-icon nc-bell-55"></i>
               <p>Notifications</p>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <i class="nc-icon nc-single-02"></i>
-              <p>User Profile</p>
             </a>
           </li>
           <li>
@@ -105,7 +108,7 @@
                 <span class="navbar-toggler-bar bar3"></span>
               </button>
             </div>
-            <a class="navbar-brand" href="javascript:;">Paper Dashboard 2</a>
+            <a class="navbar-brand" href="javascript:;"> </a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-bar navbar-kebab"></span>

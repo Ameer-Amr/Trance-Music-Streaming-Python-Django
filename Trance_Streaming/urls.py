@@ -18,9 +18,13 @@ from django.urls import path,include
 from django.conf.urls.static import static
 from django.conf import settings
 from. import views
+from django.views.generic import TemplateView
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
+    path('song/<int:song_id>/',views.singlesong,name='single_song'),
+    
     path('Accounts/',include('Accounts.urls')),
     path('AdminApp/',include('AdminApp.urls')),
     path('Songs/',include('Songs.urls')),

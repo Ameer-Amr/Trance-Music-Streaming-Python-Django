@@ -159,3 +159,4 @@ EMAIL_USE_TLS = config('EMAIL_USE_TLS', cast=bool)
 AUTH_USER_MODEL = 'Accounts.Account'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+

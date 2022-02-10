@@ -3,6 +3,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib import messages, auth
 from Songs.forms import SongForm
 from Songs.models import Song
+from AdminApp.forms import EditSong
 # Create your views here.
 
 
@@ -40,7 +41,7 @@ def upload_song(request):
         form = SongForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('dashboard')
+            return redirect('song_list')
 
     context = {
         'form': form
@@ -50,7 +51,31 @@ def upload_song(request):
     
 def song_list(request):
     if request.session.has_key('key'):
-        songs = Song.objects.all()
+        songs = Song.objects.all()[::-1]
         return render(request, 'admin/songlist.html', {'songs': songs, })
     else:
         return redirect('dashboard')
+    
+    
+def edit_song(request,song_id):
+    song = Song.objects.get(song_id=song_id)
+    form = EditSong(instance = song)
+    
+    if request.method == 'POST':
+        form = EditSong(request.POST,instance = song)
+        if form.is_valid():
+            try :
+                form.save()
+            except:
+                context = {
+                    'form':form
+                }
+                return render(request, 'admin/edit_song.html',context)
+            return redirect('song_list')
+    context = {'form': form}
+    return render(request, 'admin/edit_song.html', context)
+    
+def delete_song(request,song_id):
+    song = Song.objects.get(song_id = song_id)
+    song.delete()
+    return redirect('song_list')

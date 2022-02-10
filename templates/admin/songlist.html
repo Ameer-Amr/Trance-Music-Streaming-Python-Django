@@ -23,8 +23,10 @@
 							<th scope="col">Singer</th>
 							<th scope="col">Movie</th>
 							<th scope="col">Category</th>
-							<th scope="col">Language</th>
+							
 							<th scope="col">Image</th>
+							<th scope="col" style='text-align: center;'>Audio File</th>
+							<th scope="col">Actions</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -35,11 +37,16 @@
 							<td>{{song.singers}}</td>
 							<td>{{song.movie}}</td>
 							<td>{{song.category}}</td>
-							<td>{{song.language}}</td>
+						
 							<td>
 								<img src="{{song.image.url}}" width="75px">
 							</td>
 							<td>
+								<audio src="{{ song.song.url }}" id="audio"  controls></audio>
+							</td>
+							<td><a href="{%  url 'edit_song' song.song_id %}"><i class="fas fa-pencil-alt"></i></a> <a href="{%  url 'delete_song' song.song_id %}" style="margin-left: 15px;" onclick="deleteSong()"><i
+								class="far fa-trash-alt"></i></a>
+							</td>
 						</tr>
 						{% endfor %}
 					</tbody>
@@ -47,5 +54,56 @@
 			</div>
 		</div>
 	</section>
-	</div>      
+	</div>  
+	
+	<script>
+		function deleteSong() {
+			event.preventDefault();
+			var dlt = event.currentTarget.href
+			console.log(dlt)
+			Swal.fire({
+				title: 'Are you sure?',
+				text: "You won't be able to revert this!",
+				icon: 'warning',
+				showCancelButton: true,
+				confirmButtonColor: '#3085d6',
+				cancelButtonColor: '#d33',
+				confirmButtonText: 'Yes, delete it!'
+			}).then((result) => {
+				if (result.isConfirmed) {	
+					
+					window.location = dlt;
+				}
+			})
+		}
+	</script>
+
+<style>
+	audio:hover, audio:focus, audio:active
+{
+-webkit-box-shadow: 15px 15px 20px rgba(0,0, 0, 0.4);
+-moz-box-shadow: 15px 15px 20px rgba(0,0, 0, 0.4);
+box-shadow: 15px 15px 20px rgba(0,0, 0, 0.4);
+-webkit-transform: scale(1.05);
+-moz-transform: scale(1.05);
+transform: scale(1.05);
+}
+
+
+audio
+{
+-webkit-transition:all 0.5s linear;
+-moz-transition:all 0.5s linear;
+-o-transition:all 0.5s linear;
+transition:all 0.5s linear;
+-moz-box-shadow: 2px 2px 4px 0px #006773;
+-webkit-box-shadow:  2px 2px 4px 0px #006773;
+box-shadow: 2px 2px 4px 0px #006773;
+-moz-border-radius:7px 7px 7px 7px ;
+-webkit-border-radius:7px 7px 7px 7px ;
+border-radius:10px 10px 10px 10px ;
+}
+</style>
+
 {% endblock %}
+

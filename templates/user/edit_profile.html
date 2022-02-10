@@ -1,0 +1,112 @@
+{% extends 'user/base.html'%}
+{% load static %}
+{% block body%}
+
+        <!-- details form -->
+
+
+    <div class="container-fluid">
+        <div class="row d-flex justify-content-center align-items-center">             
+        <div class="col-12 col-lg-6 mr-5 p-5">
+            <form action="{% url 'edit_profile' %}" class="sign__form sign__form--profile" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-12">
+                        <h4 class="sign__title">Profile details</h4>
+                    </div>
+
+                    <div class="col-12 col-md-6 col-lg-12 col-xl-6">
+                        <div class="sign__group">
+                            <label class="sign__label" for="username">Username</label>
+                            {{user_form.username}}
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-6 col-lg-12 col-xl-6">
+                        <div class="sign__group">
+                            <label class="sign__label" for="email">Email</label>
+                            {{user_form.email}}
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-6 col-lg-12 col-xl-6">
+                        <div class="sign__group">
+                            <label class="sign__label" for="firstname">First name</label>
+                            {{user_form.first_name}}
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-6 col-lg-12 col-xl-6">
+                        <div class="sign__group">
+                            <label class="sign__label" for="lastname">Last name</label>
+                            {{user_form.last_name}}
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-6 col-lg-12 col-xl-6">
+                        <div class="sign__group">
+                            <label class="sign__label" for="lastname">Profile Picture</label>
+                            {{profile_form.profile_picture}}
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <button class="sign__btn" type="submit">Save</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- end details form -->
+
+        <!-- password form -->
+        <div class="col-12 col-lg-6 mb-5">
+            <form action="#" class="sign__form sign__form--profile">
+                <div class="row">
+                    <div class="col-12">
+                        <h4 class="sign__title">Change password</h4>
+                    </div>
+
+                    <div class="col-12 col-md-6 col-lg-12 col-xl-6">
+                        <div class="sign__group">
+                            <label class="sign__label" for="oldpass">Old password</label>
+                            <input id="oldpass" type="password" name="oldpass" class="sign__input">
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-6 col-lg-12 col-xl-6">
+                        <div class="sign__group">
+                            <label class="sign__label" for="newpass">New password</label>
+                            <input id="newpass" type="password" name="newpass" class="sign__input">
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-6 col-lg-12 col-xl-6">
+                        <div class="sign__group">
+                            <label class="sign__label" for="confirmpass">Confirm new password</label>
+                            <input id="confirmpass" type="password" name="confirmpass" class="sign__input">
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-6 col-lg-12 col-xl-6">
+                        <div class="sign__group">
+                            <label class="sign__label" for="select">Select</label>
+                            <select name="select" id="select" class="sign__select">
+                                <option value="0">Option</option>
+                                <option value="1">Option 2</option>
+                                <option value="2">Option 3</option>
+                                <option value="3">Option 4</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <button class="sign__btn" type="button">Change</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div> 
+    </div>
+        <!-- end password form -->
+
+{% endblock %}
